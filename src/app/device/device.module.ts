@@ -4,11 +4,13 @@ import { DeviceEditorComponent } from './components/device-editor/device-editor.
 import { DeviceTableComponent } from './components/device-table/device-table.component';
 import { DevicePageComponent } from './device-page/device-page.component';
 import {TableModule} from 'primeng/table';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    TableModule
+    TableModule,
+    ReactiveFormsModule
   ],
   declarations: [DeviceEditorComponent, DeviceTableComponent, DevicePageComponent],
   exports: [DevicePageComponent]

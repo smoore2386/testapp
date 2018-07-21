@@ -1,27 +1,74 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Device } from '../../model/device';
-import { LoadDevices } from '../../device.actions';
+import { LoadNDevices, RemoveDevice, UpdateDevice, AddDevice } from '../../device.actions';
 
+/**
+ * Intended to be the smart component for the devices page
+ */
 @Component({
   selector: 'app-device-page',
   templateUrl: './device-page.component.html',
   styleUrls: ['./device-page.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DevicePageComponent implements OnInit {
 
-  devices: BehaviorSubject<Device[]>;
-  selectedDevice;
+  devices$: Observable<Device[]>;
+  selectedDevice: BehaviorSubject<Device> = new BehaviorSubject(null);
+  add = false;
 
   constructor(private store: Store<AppState> ) {
-
+    this.devices$ = this.store.select('device');
   }
 
+  /**
+   * Set the subject
+   * @param device device chosen
+   */
+  handleSelection(device: Device){
+    this.selectedDevice.next(device);
+  }
+
+  /**
+   * Dispatch action to add device
+   * @param device adding device
+   */
+  addDevice(device) {
+    console.log(device);
+    this.store.dispatch(new AddDevice(device));
+    this.add = false;
+  }
+
+  /**
+   * Dispatch to store to remove device
+   * @param device device to be removed
+   */
+  removeDevice(device) {
+    this.store.dispatch(new RemoveDevice(device));
+  }
+
+  /**
+   * Update this device
+   * @param device device to be updated
+   */
+  updateDevice(device){
+    this.store.dispatch(new UpdateDevice(device));
+  }
+
+  /**
+   * Fetch initial or more from firebase
+   */
+  dispatchFetch(){
+    this.store.dispatch(new LoadNDevices({limit: 25}));
+  }
+
+  /**
+   * Lifecycle hook when component inits fetch
+   */
   ngOnInit() {
-    this.store.dispatch(new LoadDevices());
+    this.dispatchFetch();
   }
 
 }

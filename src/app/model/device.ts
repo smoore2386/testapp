@@ -1,6 +1,7 @@
-export interface Device{
+export interface Device {
   name;
-  host;
+  hostname;
   port;
-  user;
+  username;
+  id?;
 }

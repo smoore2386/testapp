@@ -14,6 +14,8 @@ import { DumbOneComponent } from './components/dumb-one/dumb-one.component';
 import {AngularFireModule} from 'angularfire2';
 import * as fromDevice from './device.reducer';
 import { DeviceEffects } from './device.effects';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { DeviceModule } from './device/device.module';
 
 const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyAv2mHMUxIDBKHAMN7EmS3POUfEMaKb9s0',
@@ -33,12 +35,14 @@ const FIREBASE_CONFIG = {
   ],
   imports: [
     BrowserModule,
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG, 'shanetest'),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),
     StoreModule.forFeature('device', fromDevice.reducer),
-    EffectsModule.forFeature([DeviceEffects])
+    EffectsModule.forFeature([DeviceEffects]),
+    DeviceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

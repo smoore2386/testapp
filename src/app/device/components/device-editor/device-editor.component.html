@@ -1,3 +1,59 @@
-<p>
-  device-editor works!
-</p>
+<div *ngIf="!hasDevice"><h1 class="subtitle"> No Device Selected</h1></div>
+<form [formGroup]="form" *ngIf="hasDevice">
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="" formControlName="name" [class.is-danger]="!form.get('name').valid" [class.is-success]="form.get('name').valid">
+      <span class="icon  is-left">
+        <i class="pi pi-user"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Username</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input is-success" type="text" placeholder="" formControlName="username" [class.is-danger]="!form.get('username').valid"
+        [class.is-success]="form.get('username').valid">
+      <span class="icon  is-left">
+        <i class="pi pi-user"></i>
+      </span>
+      <div *ngIf="!form.get('username').valid">
+        <p class="help is-danger">Username required</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Hostname</label>
+    <div class="control">
+      <input class="input" [class.is-danger]="!form.get('hostname').valid" [class.is-success]="form.get('hostname').valid" formControlName="hostname">
+
+      <div *ngIf="!form.get('hostname').valid">
+        <p class="help is-danger">Invalid Hostname</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Port</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" type="number" [class.is-danger]="!form.get('port').valid" [class.is-success]="form.get('port').valid"  formControlName="port">
+    </div>
+    <div *ngIf="!form.get('port').valid">
+      <p class="help is-danger">Invalid Port</p>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control" [hidden]="addDevice">
+      <button class="button is-link" (click)="update()">Update</button>
+    </div>
+    <div [hidden]="!addDevice" class="control">
+      <button class="button is-link" [disabled]="form.invalid" (click)="add()">Add</button>
+    </div>
+    <div class="control" [hidden]="addDevice">
+      <button class="button is-text is-danger" (click)="remove()">Remove</button>
+    </div>
+  </div>
+</form>

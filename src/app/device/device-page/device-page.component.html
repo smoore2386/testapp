@@ -1,4 +1,14 @@
-<p>
-  device-page works!
-</p>
-<app-device-table></app-device-table>
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="control" [hidden]="add">
+      <button class="button is-info" (click)="add=true" >Add Device</button>
+    </div>
+    <app-device-editor [device]="selectedDevice | async" [addDevice]="add"
+    (addEmitter)="addDevice($event)" (removeEmitter)="removeDevice($event)" (updateEmitter)="updateDevice($event)">
+  </app-device-editor>
+  </div>
+  <div class="column is-two-thirds">
+    <app-device-table [devices]="(devices$ | async)?.devices" (selectEmitter)="handleSelection($event)" (fetchMore)="dispatchFetch()">
+    </app-device-table>
+  </div>
+</div>

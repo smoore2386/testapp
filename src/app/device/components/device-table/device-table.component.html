@@ -1,21 +1,20 @@
-<p>
-  device-table works!
-</p>
-<p-table [value]="[]">
-  <!-- <ng-template pTemplate="header">
+<p-table [value]="devices" (onRowSelect)="onSelect($event)" selectionMode="single" [(selection)]="selectedDevice" dataKey="name"
+  [scrollable]="true" [rows]="25" scrollHeight="300px" [virtualScroll]="true" (onLazyLoad)="loadMore($event)"
+  [lazy]="true" [totalRecords]="totalDevices" [virtualRowHeight]="30" [loading]="loading">
+  <ng-template pTemplate="header">
       <tr>
-          <th>Vin</th>
-          <th>Year</th>
-          <th>Brand</th>
-          <th>Color</th>
+          <th>Name</th>
+          <th>Hostname</th>
+          <th>Username</th>
+          <th>Port</th>
       </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-car>
-      <tr>
-          <td>{{car.vin}}</td>
-          <td>{{car.year}}</td>
-          <td>{{car.brand}}</td>
-          <td>{{car.color}}</td>
+  <ng-template pTemplate="body" let-device let-rowIndex="rowIndex">
+      <tr style="height:30px" [pSelectableRow]="device">
+          <td>{{device.name}}</td>
+          <td>{{device.hostname}}</td>
+          <td>{{device.username}}</td>
+          <td>{{device.port}}</td>
       </tr>
-  </ng-template> -->
+  </ng-template>
 </p-table>
