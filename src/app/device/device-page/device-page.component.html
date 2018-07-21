@@ -1,9 +1,9 @@
 <div class="columns">
   <div class="column is-one-third">
     <div class="control" [hidden]="add">
-      <button class="button is-info" (click)="add=true" >Add Device</button>
+      <button class="button is-info" (click)="addDeviceEditor()" >Add Device</button>
     </div>
-    <app-device-editor [device]="selectedDevice | async" [addDevice]="add"
+    <app-device-editor   *ngIf="selectedDevice | async " [device]="selectedDevice | async" [addDevice]="add"
     (addEmitter)="addDevice($event)" (removeEmitter)="removeDevice($event)" (updateEmitter)="updateDevice($event)"
     (cancelEmitter)="closeEditor()">
   </app-device-editor>
@@ -13,3 +13,13 @@
     </app-device-table>
   </div>
 </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>

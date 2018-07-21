@@ -22,6 +22,16 @@ export class DevicePageComponent implements OnInit {
   constructor(private store: Store<AppState> ) {
     this.devices$ = this.store.select('device');
   }
+  /**
+   * Empty device to child component
+   */
+  addDeviceEditor(){
+    this.add = true;
+    this.selectedDevice.next({hostname:'', username: '', name: '', port: ''});
+  }
+  /**
+   * Close the device editor
+   */
   closeEditor(){
     this.add = false;
     this.selectedDevice.next(null);
@@ -40,7 +50,6 @@ export class DevicePageComponent implements OnInit {
    * @param device adding device
    */
   addDevice(device) {
-    console.log(device);
     this.store.dispatch(new AddDevice(device));
     this.add = false;
   }

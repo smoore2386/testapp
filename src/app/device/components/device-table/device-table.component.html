@@ -1,5 +1,5 @@
 <p-table [value]="devices" (onRowSelect)="onSelect($event)" selectionMode="single" [(selection)]="selectedDevice" dataKey="name"
-  [scrollable]="true" [rows]="25" scrollHeight="300px" [virtualScroll]="true" (onLazyLoad)="loadMore($event)"
+  [scrollable]="true" [rows]="25" scrollHeight="500px" [virtualScroll]="true" (onLazyLoad)="loadMore($event)"
   [lazy]="true" [totalRecords]="totalDevices" [virtualRowHeight]="30" [loading]="loading" virtualScrollDelay="200">
   <ng-template pTemplate="header">
       <tr>

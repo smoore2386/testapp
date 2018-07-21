@@ -3,20 +3,15 @@
     <label class="label">Name</label>
     <div class="control">
       <input class="input" type="text" placeholder="" formControlName="name" [class.is-danger]="!form.get('name').valid" [class.is-success]="form.get('name').valid">
-      <span class="icon  is-left">
-        <i class="pi pi-user"></i>
-      </span>
     </div>
   </div>
 
   <div class="field">
     <label class="label">Username</label>
-    <div class="control has-icons-left has-icons-right">
+    <div class="control">
       <input class="input is-success" type="text" placeholder="" formControlName="username" [class.is-danger]="!form.get('username').valid"
         [class.is-success]="form.get('username').valid">
-      <span class="icon  is-left">
-        <i class="pi pi-user"></i>
-      </span>
+
       <div *ngIf="!form.get('username').valid">
         <p class="help is-danger">Username required</p>
       </div>
@@ -37,7 +32,8 @@
   <div class="field">
     <label class="label">Port</label>
     <div class="control has-icons-left has-icons-right">
-      <input class="input" type="number" [class.is-danger]="!form.get('port').valid" [class.is-success]="form.get('port').valid"  formControlName="port">
+      <input class="input" type="number" [class.is-danger]="!form.get('port').valid" [class.is-success]="form.get('port').valid"
+        formControlName="port">
     </div>
     <div *ngIf="!form.get('port').valid">
       <p class="help is-danger">Invalid Port</p>
@@ -54,8 +50,8 @@
     <div class="control" [hidden]="addDevice">
       <button class="button  is-danger" (click)="remove()">Remove</button>
     </div>
-    <div class="control" [hidden]="addDevice">
-        <button class="button  is-danger" (click)="cancel()">Cancel</button>
+    <div class="control">
+      <button class="button  is-danger" (click)="cancel()">Cancel</button>
     </div>
   </div>
 </form>

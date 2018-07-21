@@ -89,8 +89,6 @@ export class DeviceEditorComponent implements OnChanges {
   ngOnChanges() {
     if (this.device) {
       this.initializeForm(this.device);
-    }else if(this.addDevice){
-      this.initializeForm({hostname:'', username: '', name: '', port: ''})
     }
   }
 }
