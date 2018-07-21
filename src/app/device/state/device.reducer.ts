@@ -1,6 +1,6 @@
 import { Action, createSelector } from '@ngrx/store';
 import { DeviceActions, DeviceActionTypes } from './device.actions';
-import { Device } from './model/device';
+import { Device } from '../model/device';
 
 /**
  * Keep track of devices and the last key for pagination

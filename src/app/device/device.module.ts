@@ -5,12 +5,18 @@ import { DeviceTableComponent } from './components/device-table/device-table.com
 import { DevicePageComponent } from './device-page/device-page.component';
 import {TableModule} from 'primeng/table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromDevice from './state/device.reducer';
+import { DeviceEffects } from './state/device.effects';
 
 @NgModule({
   imports: [
     CommonModule,
     TableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('device', fromDevice.reducer),
+    EffectsModule.forFeature([DeviceEffects]),
   ],
   declarations: [DeviceEditorComponent, DeviceTableComponent, DevicePageComponent],
   exports: [DevicePageComponent]

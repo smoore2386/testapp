@@ -8,12 +8,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
-import { SmartOneComponent } from './components/smart-one/smart-one.component';
-import { DumbOneComponent } from './components/dumb-one/dumb-one.component';
 
 import {AngularFireModule} from 'angularfire2';
-import * as fromDevice from './device.reducer';
-import { DeviceEffects } from './device.effects';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { DeviceModule } from './device/device.module';
 
@@ -30,18 +26,14 @@ const FIREBASE_CONFIG = {
 @NgModule({
   declarations: [
     AppComponent,
-    SmartOneComponent,
-    DumbOneComponent
   ],
   imports: [
     BrowserModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG, 'shanetest'),
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([AppEffects]),
-    StoreModule.forFeature('device', fromDevice.reducer),
-    EffectsModule.forFeature([DeviceEffects]),
     DeviceModule
   ],
   providers: [],

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Device } from './model/device';
+import { Device } from '../model/device';
 
 export enum DeviceActionTypes {
   LoadNDevices = '[Device] Load N Devices',

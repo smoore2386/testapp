@@ -1,4 +1,3 @@
-<div *ngIf="!hasDevice"><h1 class="subtitle"> No Device Selected</h1></div>
 <form [formGroup]="form" *ngIf="hasDevice">
   <div class="field">
     <label class="label">Name</label>
@@ -53,7 +52,10 @@
       <button class="button is-link" [disabled]="form.invalid" (click)="add()">Add</button>
     </div>
     <div class="control" [hidden]="addDevice">
-      <button class="button is-text is-danger" (click)="remove()">Remove</button>
+      <button class="button  is-danger" (click)="remove()">Remove</button>
+    </div>
+    <div class="control" [hidden]="addDevice">
+        <button class="button  is-danger" (click)="cancel()">Cancel</button>
     </div>
   </div>
 </form>

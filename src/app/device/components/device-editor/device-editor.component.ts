@@ -22,6 +22,7 @@ export class DeviceEditorComponent implements OnChanges {
   @Output() updateEmitter = new EventEmitter<Device>();
   @Output() removeEmitter = new EventEmitter<Device>();
   @Output() addEmitter = new EventEmitter<Device>();
+  @Output() cancelEmitter = new EventEmitter<boolean>();
 
   hasDevice = false;
   form;
@@ -57,7 +58,6 @@ export class DeviceEditorComponent implements OnChanges {
    * @param id
    */
   add() {
-    console.log(this.form.value);
     this.addEmitter.emit(this.form.value)
   }
 
@@ -75,6 +75,12 @@ export class DeviceEditorComponent implements OnChanges {
    */
   update() {
     this.updateEmitter.emit(this.form.value);
+  }
+  /**
+   * close the form
+   */
+  cancel(){
+    this.cancelEmitter.emit(true);
   }
 
   /**

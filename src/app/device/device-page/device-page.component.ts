@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, OnChanges } from '@angular/
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Device } from '../../model/device';
-import { LoadNDevices, RemoveDevice, UpdateDevice, AddDevice } from '../../device.actions';
+import { Device } from '../model/device';
+import { LoadNDevices, RemoveDevice, UpdateDevice, AddDevice } from '../state/device.actions';
 
 /**
  * Intended to be the smart component for the devices page
@@ -22,12 +22,16 @@ export class DevicePageComponent implements OnInit {
   constructor(private store: Store<AppState> ) {
     this.devices$ = this.store.select('device');
   }
-
+  closeEditor(){
+    this.add = false;
+    this.selectedDevice.next(null);
+  }
   /**
    * Set the subject
    * @param device device chosen
    */
   handleSelection(device: Device){
+    this.add = false;
     this.selectedDevice.next(device);
   }
 

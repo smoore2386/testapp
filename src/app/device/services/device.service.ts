@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Device } from './model/device';
+import { Device } from '../model/device';
 import { map, tap, take } from 'rxjs/operators';
-import { AppState } from './reducers';
+import { AppState } from '../../reducers';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 

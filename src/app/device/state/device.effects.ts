@@ -11,10 +11,10 @@ import {
   UpdateDevice,
   AddDevice
 } from './device.actions';
-import { DeviceService } from './device.service';
+import { DeviceService } from '../services/device.service';
 import { switchMap, map, catchError, tap, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Device } from './model/device';
+import { Device } from '../model/device';
 
 @Injectable()
 export class DeviceEffects {
