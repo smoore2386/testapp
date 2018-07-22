@@ -27,7 +27,7 @@ export function reducer(state = initialState, action: DeviceActions): DeviceStat
       return state;
 
     case DeviceActionTypes.LoadSuccess:
-      return { ...state, devices: state.devices.concat(action.payload.slice()) };
+      return { ...state, devices: state.devices.concat(action.payload) };
 
     case DeviceActionTypes.RemoveDevice:
       const idx = state.devices.indexOf(action.payload);
@@ -37,11 +37,11 @@ export function reducer(state = initialState, action: DeviceActions): DeviceStat
       };
 
     case DeviceActionTypes.AddDevice:
-    state.devices.unshift(action.payload)
       return {
         ...state,
-        devices: state.devices
-      }
+        devices: [action.payload].concat(state.devices)
+      };
+
     case DeviceActionTypes.UpdateDevice:
       return {
         ...state,
