@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnChanges, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { LoadNDevices, RemoveDevice, UpdateDevice, AddDevice } from '../state/de
   selector: 'app-device-page',
   templateUrl: './device-page.component.html',
   styleUrls: ['./device-page.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DevicePageComponent implements OnInit {
 
@@ -60,6 +61,7 @@ export class DevicePageComponent implements OnInit {
    */
   removeDevice(device) {
     this.store.dispatch(new RemoveDevice(device));
+    this.selectedDevice.next(null);
   }
 
   /**

@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { Device } from '../../../model/device';
+import { Device } from '../../model/device';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -58,7 +58,7 @@ export class DeviceEditorComponent implements OnChanges {
    * @param id
    */
   add() {
-    this.addEmitter.emit(this.form.value)
+    this.addEmitter.emit(this.form.value);
   }
 
   /**
@@ -68,13 +68,16 @@ export class DeviceEditorComponent implements OnChanges {
   remove() {
     this.hasDevice = false;
     this.removeEmitter.emit(this.device);
+    this.cancel();
   }
 
   /**
    * Tell parent component to update this
    */
   update() {
+    this.device = this.form.value;
     this.updateEmitter.emit(this.form.value);
+    this.cancel();
   }
   /**
    * close the form

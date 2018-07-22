@@ -1,0 +1,9 @@
+.footer{
+  padding:1rem 1.5rem 3rem;
+  background-color:hsl(0, 0%, 29%);
+  color:white;
+}
+.space-filler {
+  flex: 1;
+  min-height:10%;
+}

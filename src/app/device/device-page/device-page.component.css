@@ -1,9 +1,6 @@
-:host{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
 .columns{
-  padding:1em;
+  padding:2em;
+}
+.ui-table .ui-table-thead > tr > th{
+  background-color: white;
 }

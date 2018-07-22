@@ -8,7 +8,7 @@ import {
   EventEmitter,
   SimpleChanges
 } from '@angular/core';
-import { Device } from '../../../model/device';
+import { Device } from '../../model/device';
 
 @Component({
   selector: 'app-device-table',
@@ -38,8 +38,10 @@ export class DeviceTableComponent implements OnChanges {
    * @param event
    */
   loadMore(event) {
+    console.log('event')
     this.loading = true;
-    this.fetchMore.emit(true);
+    setTimeout(() => this.fetchMore.emit(true) , 3000 );
+
   }
   /**
    * Set loading to false when the devices array has changed.

@@ -31,17 +31,22 @@ export function reducer(state = initialState, action: DeviceActions): DeviceStat
 
     case DeviceActionTypes.RemoveDevice:
       const idx = state.devices.indexOf(action.payload);
-      console.log(idx);
       return {
         ...state,
         devices: [...state.devices.slice(0, idx), ...state.devices.slice(idx + 1)]
       };
 
+    case DeviceActionTypes.AddDevice:
+    state.devices.unshift(action.payload)
+      return {
+        ...state,
+        devices: state.devices
+      }
     case DeviceActionTypes.UpdateDevice:
       return {
         ...state,
         devices: state.devices.map((device, index) => {
-          if (index === action.payload.id) {
+          if (device.id === action.payload.id) {
             return { ...action.payload };
           }
           return device;

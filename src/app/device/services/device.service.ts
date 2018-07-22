@@ -18,7 +18,7 @@ export class DeviceService {
   ) { }
 
   /**
-   * Create device
+   * Get the last key in the collection and increment for new key
    * @param device device to create
    */
   create(device: Device) {
@@ -61,13 +61,13 @@ export class DeviceService {
    * fetch simple array list from firebase
    * @param limit size of fetch
    */
-  fetch(limit = 25) {
+  fetch(limit = 50) {
     return this.afDb
       .list('/download/request/configurations/', ref =>
         ref
           .orderByKey()
           .startAt(this.lastKey.getValue().toString())
-          .endAt((this.lastKey.getValue() + limit).toString())
+          .limitToFirst(limit)
       )
       .snapshotChanges()
       .pipe(
